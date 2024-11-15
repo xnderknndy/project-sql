@@ -1,26 +1,101 @@
 {% extends 'layout.html' %}
 
 {% block konten %}
-    <table border="2">
-        <tr>
-            <th>Character</th>
-            <th>Artifact</th>
-            <th>Weapon</th>
-            <th>Main Stat</th>
-            <th>Sub Stat</th>
-        </tr>
+    <div class="table-container">
+        <table>
+            <thead>
+                <tr>
+                    <th>Character</th>
+                    <th>Artifact</th>
+                    <th>Weapon</th>
+                    <th>Main Stat</th>
+                    <th>Sub Stat</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for result in data %}
+                <tr>
+                    <td>{{ result[1] }}</td>
+                    <td>{{ result[2] }}</td>
+                    <td>{{ result[3] }}</td>
+                    <td>{{ result[4] }}</td>
+                    <td>{{ result[5] }}</td>
+                    <td>
+                        <a href="/update/{{ result[0] }}" class="btn update">Update</a>
+                        <a href="/hapus/{{ result[0] }}" class="btn delete">Delete</a>
+                    </td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
 
-        {% for result in data %}
-        <tr>
-            <td>{{ result[1] }}</td>
-            <td>{{ result[2] }}</td>
-            <td>{{ result[3] }}</td>
-            <td>{{ result[4] }}</td>
-            <td>{{ result[5] }}</td>
-            <td> <a href="/update/{{ result[0] }}">UPDATE</a> - <a href="/hapus/{{ result[0] }}">DELETE</a> </td>
-        </tr>
-        {% endfor %}
+    <style>
+        * {
+            font-family: Arial, sans-serif;
+        }
 
+        .table-container {
+            max-width: 800px;
+            margin: auto;
+            padding: 20px;
+        }
 
-    </table>
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 10px;
+            background-color: #fff;
+            box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+            border-radius: 8px;
+            overflow: hidden;
+        }
+
+        th, td {
+            padding: 12px 15px;
+            text-align: left;
+            border-bottom: 1px solid #ddd;
+        }
+
+        th {
+            background-color: #6174d7;
+            color: #fff;
+            font-weight: bold;
+        }
+
+        tbody tr:nth-child(even) {
+            background-color: #f9f9f9;
+        }
+
+        tbody tr:hover {
+            background-color: #f1f1f1;
+        }
+
+        .btn {
+            padding: 6px 10px;
+            text-decoration: none;
+            font-size: 0.9rem;
+            color: #fff;
+            transition: background-color 0.3s;
+            display: inline-block;
+            margin: 2px 4px;
+        }
+
+        .update {
+            background-color: #4CAF50;
+        }
+
+        .update:hover {
+            background-color: #45a049;
+        }
+
+        .delete {
+            background-color: #f44336;
+        }
+
+        .delete:hover {
+            background-color: #e53935;
+        }
+    </style>
 {% endblock %}
